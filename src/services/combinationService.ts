@@ -34,7 +34,7 @@ class CombinationService {
     public combinationOfEachArray(req: any, callback: Function) {
         var data = req.body;
         var reqArray: any = [];
-        
+
         let resArray = [];
         Object.keys(data).forEach(key => {
             resArray = this.combinationArray(key, data[key], resArray)
@@ -75,7 +75,7 @@ class CombinationService {
             }
         }
         commonService.destroy(condition, models.Combination, function (err: Error, response: any) {
-            callback(err, {message: "Data deleted"});
+            callback(err, { message: "Data deleted" });
         })
     }
 

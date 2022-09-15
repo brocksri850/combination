@@ -21,10 +21,8 @@ To start the server run:
 
 problem:
 
- 
-Get the number of array values based on gendrating array of combination based
-
 Generating Array of combination values based on number of array values and that values store it database, and also below tasks are completed.
+
 1. Show the values in UI
 2. Update and Delete the particular values based on user wish.
 
@@ -35,8 +33,8 @@ Kindly Refer the functionality
 Test cases 1:
 
 Method: POST
-Url: http://localhost:6000/combination/createcombination
-
+`Url: http://localhost:6000/combination/createcombination`
+`
 1. Input:
 body:
 {
@@ -120,14 +118,14 @@ Output:
             "size": "large"
         }
     ]
-}
+}`
 
 Test cases 2:
 
 input:
 body:
 
-    {
+   ` {
     "color": [
         "blue",
         "yellow",
@@ -441,18 +439,18 @@ body:
             "fit": "g"
         }
     ]
-}
+}`
 
 
 ---------------------------------------------Get all Combination---------------------------------------------
 
-    Url: http://localhost:6000/combination/getall
+   ` Url: http://localhost:6000/combination/getall
     Method: GET
-
+`
 Input:
 
 Output:
-{
+`{
     "status": true,
     "code": 200,
     "message": "Success",
@@ -518,18 +516,19 @@ Output:
             "size": "large"
         }
     ]
-}
-----------------------------------------------GetById Combination Api----------------------------------------
+}`
 
-Url:http://localhost:6000/combination/getone?combination_id=120
+GetById Combination Api:
+
+`Url:http://localhost:6000/combination/getone?combination_id=120
 query: 
   combination_id: 120
-Method: GET
+Method: GET`
 
 Input:
 
 Output: 
-{
+`{
     "status": true,
     "code": 200,
     "message": "Success",
@@ -539,9 +538,11 @@ Output:
         "size": "large",
         "fit": "g"
     }
-}
+}`
 
 ---------------------------------------------Update Combination api------------------------------------------
+
+Updates an existing event. The JSON object must be passed in the request body as raw. It returns an error in case the event doesn't exist.
 
 Url: http://localhost:6000/combination/update?combination_id=72
 query: 

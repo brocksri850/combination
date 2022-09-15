@@ -9,7 +9,6 @@ import * as fileUpload from 'express-fileupload';
 import * as errorHandler from 'errorhandler';
 import * as methodOverride from 'method-override';
 
-import categoryRoutes from './routes/categoryRoutes';
 import combinationRoutes from './routes/combinationRoutes';
 
 
@@ -65,7 +64,6 @@ export class Server {
 
     //All Routes
 
-    this.app.use('/category', categoryRoutes)
     this.app.use('/combination', combinationRoutes)
 
 

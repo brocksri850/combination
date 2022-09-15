@@ -19,24 +19,23 @@ To start the server run:
 `$ npm start`
 
 
-problem:
+## Problem
 
 Generating Array of combination values based on number of array values and that values store it database, and also below tasks are completed.
 
 1. Show the values in UI
 2. Update and Delete the particular values based on user wish.
 
-Kindly Refer the functionality
+## Kindly Refer the functionality
 
-1. create combination for array
+## create combination
 
-Test cases 1:
+## Test cases 1:
 
-Method: POST
-`Url: http://localhost:6000/combination/createcombination`
+`Method`: `POST Url: http://localhost:6000/combination/createcombination`
 `
-1. Input:
-body:
+## Input:
+`body:
 {
     "color": [
         "blue",
@@ -49,10 +48,10 @@ body:
         "medium",
         "large"
     ]
-}
+}`
 
-Output:
-    {
+## Output:
+    `{
     "status": true,
     "code": 200,
     "message": "Success",
@@ -120,11 +119,10 @@ Output:
     ]
 }`
 
-Test cases 2:
+## Test cases 2:
 
-input:
+## input:
 body:
-
    ` {
     "color": [
         "blue",
@@ -144,8 +142,8 @@ body:
         "g"
     ]
 }
-  output:
-    {
+## output:
+    `{
     "status": true,
     "code": 200,
     "message": "Success",
@@ -442,14 +440,13 @@ body:
 }`
 
 
----------------------------------------------Get all Combination---------------------------------------------
+## Get all Combination
 
-   ` Url: http://localhost:6000/combination/getall
-    Method: GET
-`
-Input:
+`Method: GET Url: http://localhost:6000/combination/getall`
+    
+## Input:
 
-Output:
+## Output:
 `{
     "status": true,
     "code": 200,
@@ -518,16 +515,13 @@ Output:
     ]
 }`
 
-GetById Combination Api:
+## GetById Combination Api
 
-`Url:http://localhost:6000/combination/getone?combination_id=120
-query: 
-  combination_id: 120
-Method: GET`
+`Method: GET Url:http://localhost:6000/combination/getone?combination_id=120`
+`query: combination_id: 120`
+## Input:
 
-Input:
-
-Output: 
+## Output: 
 `{
     "status": true,
     "code": 200,
@@ -540,48 +534,44 @@ Output:
     }
 }`
 
----------------------------------------------Update Combination api------------------------------------------
+## Update Combination api
 
 Updates an existing event. The JSON object must be passed in the request body as raw. It returns an error in case the event doesn't exist.
 
-Url: http://localhost:6000/combination/update?combination_id=72
-query: 
-  combination_id: 120
-Method: PUT
+`Method: PUT Url: http://localhost:6000/combination/update?combination_id=72`
+`query: combination_id: 120`
 
-Input: 
+## Input: 
 body:
- {
+`{
     "color": "orange",
     "size": "medium"
-}
+}`
 
-Output:
-{
+## Output:
+`{
     "status": true,
     "code": 200,
     "message": "Success",
     "data": [
         1
     ]
-}
+}`
 
-----------------------------------------------Delete Combination Api-----------------------------------------
+## Delete Combination Api
+
+`Method: DELTE Url: http://localhost:6000/combination/delete?combination_id=62`
+`query: combination_id: 62`
 
 
-Url: http://localhost:6000/combination/delete?combination_id=62
-query: 
-  combination_id: 62
-Method: DELTE
+## Input: 
 
-Input: 
-
-Output:
-{
+## Output:
+`{
     "status": true,
     "code": 200,
     "message": "Success",
     "data": {
         "message": "Data deleted"
     }
-}
+}`

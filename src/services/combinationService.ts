@@ -5,50 +5,39 @@ class CombinationService {
 
     constructor() { }
 
+    public combinationArray(key, dataArray, resArray) {
+        var reqArray: any = [];
+
+        const iterateValues = (element = {}) => {
+            let result: any = [];
+            dataArray.map(element1 => {
+                var reqJson: any = {
+                    ...element,
+                    [key]: element1
+                }
+                result.push(reqJson)
+            });
+            return result
+        }
+
+        if (resArray.length > 0) {
+            resArray.forEach(element =>
+                reqArray = [...reqArray, ...iterateValues(element)]
+            )
+        }
+        else {
+            reqArray = iterateValues();
+        }
+        return reqArray;
+    }
+
     public combinationOfEachArray(req: any, callback: Function) {
         var data = req.body;
         var reqArray: any = [];
-
-        //This only two array  can get a combination
-
-        // data.color.forEach(element => data.size.map(element1 => {
-        //     var reqJson: any = {
-        //         color: element,
-        //         size: element1
-        //     }
-        //     reqArray.push(reqJson)
-        // }))
-
-        // this is dynamically get an combination for multiple arrays
-        const combinationArray = (key, dataArray, resArray) => {
-            var reqArray: any = [];
-
-            const iterateValues = (element = {}) => {
-                let result: any = [];
-                dataArray.map(element1 => {
-                    var reqJson: any = {
-                        ...element,
-                        [key]: element1
-                    }
-                    result.push(reqJson)
-                });
-                return result
-            }
-
-            if (resArray.length > 0) {
-                resArray.forEach(element =>
-                    reqArray = [...reqArray, ...iterateValues(element)]
-                )
-            }
-            else {
-                reqArray = iterateValues();
-            }
-            return reqArray;
-        }
-
+        
         let resArray = [];
         Object.keys(data).forEach(key => {
-            resArray = combinationArray(key, data[key], resArray)
+            resArray = this.combinationArray(key, data[key], resArray)
         })
 
         commonService.bulkCreate(resArray, models.Combination, function (err: Error, response: any) {

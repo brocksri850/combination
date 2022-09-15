@@ -34,3 +34,4 @@ export default function (sequelize: Sequelize): CombinationModelStatic {
 
     return combination;
 }
+

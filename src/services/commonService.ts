@@ -59,6 +59,17 @@ export class CommonService {
         });
     }
 
+    // generateKeyValues(data: any) {
+    //     let keyValus = {}
+    //     let dataType = {
+    //         type: DataTypes.STRING,
+    //         allowNull: false
+    //     }
+    //     Object.keys(data).forEach(key => {
+    //         keyValus[key] = dataType
+    //     })
+    // }
+
 }
 
 export const commonService = new CommonService()

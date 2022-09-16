@@ -122,8 +122,8 @@ Generating Array of combination values based on number of array values and that 
 ## Test cases 2:
 
 ## input:
-body:
-   ` {
+`body:
+    {
     "color": [
         "blue",
         "yellow",

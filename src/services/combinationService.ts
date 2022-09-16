@@ -5,32 +5,6 @@ class CombinationService {
 
     constructor() { }
 
-    public combinationArray(key, dataArray, resArray) {
-        var reqArray: any = [];
-
-        const iterateValues = (element = {}) => {
-            let result: any = [];
-            dataArray.map(element1 => {
-                var reqJson: any = {
-                    ...element,
-                    [key]: element1
-                }
-                result.push(reqJson)
-            });
-            return result
-        }
-
-        if (resArray.length > 0) {
-            resArray.forEach(element =>
-                reqArray = [...reqArray, ...iterateValues(element)]
-            )
-        }
-        else {
-            reqArray = iterateValues();
-        }
-        return reqArray;
-    }
-
     public combinationOfEachArray(req: any, callback: Function) {
         var data = req.body;
         var reqArray: any = [];
@@ -89,6 +63,32 @@ class CombinationService {
         commonService.findOne(condition, models.Combination, function (err: Error, response: any) {
             callback(err, response);
         })
+    }
+
+    public combinationArray(key, dataArray, resArray) {
+        var reqArray: any = [];
+
+        const iterateValues = (element = {}) => {
+            let result: any = [];
+            dataArray.map(element1 => {
+                var reqJson: any = {
+                    ...element,
+                    [key]: element1
+                }
+                result.push(reqJson)
+            });
+            return result
+        }
+
+        if (resArray.length > 0) {
+            resArray.forEach(element =>
+                reqArray = [...reqArray, ...iterateValues(element)]
+            )
+        }
+        else {
+            reqArray = iterateValues();
+        }
+        return reqArray;
     }
 
 }

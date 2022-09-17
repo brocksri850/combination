@@ -5,6 +5,8 @@ import commonService from "./commonService";
 import * as nodemailer from "nodemailer";
 import { cryptoCommon } from "../../utils/commonUtil";
 import * as _ from "lodash";
+import { response } from "express";
+import jwtUtils from "../../utils/jwtUtils";
 
 class UserService {
 
@@ -28,6 +30,25 @@ class UserService {
             },
             function (Dummy: any, waterfallCallback: Function) {
 
+                if (data.email && data.password) {
+                    data.hash = cryptoCommon.encrypt(JSON.stringify({ email: data.email, password: data.password }));
+                }
+
+                data.salt = crypto.randomBytes(16).toString('hex');
+                data.password_string = crypto.pbkdf2Sync(data.password, data.salt, 1000, 64, `sha512`).toString(`hex`);
+
+                var requireObject = JSON.parse(cryptoCommon.decrypt(data.hash));
+                data.email = requireObject.email.toLowerCase();
+                data.password = requireObject.password;
+
+                data.created_at = new Date().toISOString();
+
+                commonService.findOrCreate({ email: data.email }, data, models.User, function (err: any, response: any) {
+                    waterfallCallback(err, response);
+                })
+            },
+            function (Dummy: any, waterfallCallback: Function) {
+
                 const secretCode = Math.floor(100000 + Math.random() * 900000);
 
                 const output = `<h1> Welcome to my Product </h1>
@@ -39,6 +60,7 @@ class UserService {
                 var sender = nodemailer.createTransport({
                     host: 'smtp.gmail.com',
                     port: 587,
+                    service: 'Gmail',
                     secure: false,
                     requireTLS: true,
                     auth: {
@@ -58,30 +80,30 @@ class UserService {
                     waterfallCallback(err, info)
                 })
             },
-            function (info: any, waterfallCallback: Function) {
-                // info = true;
-                // if (info == true) {
+            // function (info: any, waterfallCallback: Function) {
+            //     // info = true;
+            //     // if (info == true) {
 
-                if (data.email && data.password) {
-                    data.hash = cryptoCommon.encrypt(JSON.stringify({ email: data.email, password: data.password }));
-                }
+            //     if (data.email && data.password) {
+            //         data.hash = cryptoCommon.encrypt(JSON.stringify({ email: data.email, password: data.password }));
+            //     }
 
-                data.salt = crypto.randomBytes(16).toString('hex');
-                data.password_string = crypto.pbkdf2Sync(data.password, data.salt, 1000, 64, `sha512`).toString(`hex`);
+            //     data.salt = crypto.randomBytes(16).toString('hex');
+            //     data.password_string = crypto.pbkdf2Sync(data.password, data.salt, 1000, 64, `sha512`).toString(`hex`);
 
-                var requireObject = JSON.parse(cryptoCommon.decrypt(data.hash));
-                data.email = requireObject.email.toLowerCase();
-                data.password = requireObject.password;
+            //     var requireObject = JSON.parse(cryptoCommon.decrypt(data.hash));
+            //     data.email = requireObject.email.toLowerCase();
+            //     data.password = requireObject.password;
 
-                data.created_at = new Date().toISOString();
+            //     data.created_at = new Date().toISOString();
 
-                commonService.findOrCreate({ email: data.email }, data, models.User, function (err: any, response: any) {
-                    waterfallCallback(err, response);
-                })
-                // } else {
-                //     waterfallCallback(null, null)
-                // }
-            },
+            //     commonService.findOrCreate({ email: data.email }, data, models.User, function (err: any, response: any) {
+            //         waterfallCallback(err, response);
+            //     })
+            //     // } else {
+            //     //     waterfallCallback(null, null)
+            //     // }
+            // },
         ], function (err, result) {
             callback(null, result);
         })
@@ -108,7 +130,7 @@ class UserService {
 
                 if (userDtl.password_string === password_string) {
                     userService.loginSessionCreate(userDtl, function (err: Error, response: any) {
-                        waterfallCallback(err, response)
+                        waterfallCallback(err, response.payload)
                     })
                 } else {
                     var error = new Error("Password InCorrect")
@@ -121,15 +143,42 @@ class UserService {
     }
 
     public loginSessionCreate(userDtl: any, callback: Function) {
+
+        var payload: any = {
+            user_id: userDtl.user_id,
+            first_name: userDtl.first_name,
+            last_name: userDtl.last_name,
+            email: userDtl.email,
+            phone_number: userDtl.phone_number,
+            user_name: userDtl.user_name
+        }
         async.waterfall([
             function (waterfallCallback: Function) {
-                var payload = {
-                    user_id: userDtl.user_id,
+                var requiredStringForJwtToken = "User#Id_" + userDtl.user_id;
+                jwtUtils.jwtSign({ redisId: requiredStringForJwtToken }, function (err: any, token: any) {
+                    if (err) return waterfallCallback(new Error("Login error in token creation"), null);
+                    return waterfallCallback(null, token, requiredStringForJwtToken)
+                })
+            },
+            function (token: any, requiredStringForJwtToken: any, waterfallCallback: Function) {
+                payload.token = token
+                payload.created_dt = new Date();
+                payload.key = requiredStringForJwtToken
 
+                var data: any = {};
+
+                data.key = requiredStringForJwtToken
+                data.payload = payload;
+
+                var reqFinalJson: any = {
+                    payload: payload,
                 }
+                commonService.update(data, { where: { user_id: userDtl.user_id } }, models.User, function (err, payload) {
+                    waterfallCallback(err, reqFinalJson)
+                })
             }
         ], function (err, result) {
-
+            callback(err, result)
         })
     }
 }

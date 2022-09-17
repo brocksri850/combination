@@ -45,6 +45,12 @@ export default function (sequelize: Sequelize): UserModelStatic {
         password_string: {
             type: DataTypes.STRING
         },
+        key: {
+            type: DataTypes.STRING
+        },
+        payload: {
+            type: DataTypes.JSON,
+        },
         status: {
             type: DataTypes.STRING,
             defaultValue: 'Active',

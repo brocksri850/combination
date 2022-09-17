@@ -9,13 +9,18 @@ import { logger } from "../common/logger";
 
 //models
 
-import combination, { CombinationModelStatic } from "./combination-model";
+import user, { UserModelStatic } from "./user-model";
+import educationqualification, { EducationModelStatic } from "./educationQualification-model";
+import workexperience, { WorkExperienceModelStatic } from "./workExperience-model";
+
 
 
 export interface SequelizeModels {
   sequelize: Sequelize;
 
-  Combination: CombinationModelStatic;
+  User: UserModelStatic;
+  EducationQualification: EducationModelStatic;
+  WorkExperience: WorkExperienceModelStatic;
 }
 
 export class Database {
@@ -44,8 +49,10 @@ export class Database {
 
     this._models = {
       sequelize,
-      Combination: combination(this._sequelize),
-      
+      User: user(this._sequelize),
+      EducationQualification: educationqualification(this._sequelize),
+      WorkExperience: workexperience(this._sequelize)
+
     };
 
     var model: any;

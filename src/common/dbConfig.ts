@@ -13,13 +13,13 @@ export interface DatabaseConfig {
 
 export const databaseConfig: DatabaseConfig = {
 
-username: 'root',
-password: 'root',
-database: 'combination_db',
-host: 'localhost',
-port: 3306,
-dialect: 'mysql',
-logging: false,  
-force: true,
-timezone: '+00:00'
+  username: 'root',
+  password: 'root',
+  database: 'userdb',
+  host: 'localhost',
+  port: 3306,
+  dialect: 'mysql',
+  logging: false,
+  force: true,
+  timezone: '+00:00'
 }

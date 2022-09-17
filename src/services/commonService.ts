@@ -58,6 +58,15 @@ export class CommonService {
             callback(error, null);
         });
     }
+    
+    findOrCreate(condition, entityAttributes: EntityAttributes, accessObject: any, callback: Function) {
+        accessObject.findOrCreate({ where: condition, defaults: entityAttributes }).then((entity: any) => {
+            callback(null, entity);
+        }).catch((error: Error) => {
+            logger.error(error.message);
+            callback(error, null);
+        });
+    }
 
     // generateKeyValues(data: any) {
     //     let keyValus = {}

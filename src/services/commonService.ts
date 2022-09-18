@@ -77,6 +77,25 @@ export class CommonService {
         });
     }
 
+    findAndCountAll(condition: any, accessObject: any, callback: Function) {
+        accessObject.findAndCountAll(condition).then((entity: any) => {
+            return callback(null, entity);
+        }).catch((error: Error) => {
+            logger.error(error.message);
+            return callback(error, null);
+        });
+    }
+
+    count(condition: any, accessObject: any, callback: Function) {
+        accessObject.count(condition).then((entity: any) => {
+            callback(null, entity);
+        }).catch((error: Error) => {
+            logger.error(error.message);
+            callback(error, null);
+        });
+    }
+
+
 }
 
 export const commonService = new CommonService()

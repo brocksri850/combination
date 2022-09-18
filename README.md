@@ -18,36 +18,25 @@ To start the server run:
 
 `$ npm start`
 
-
-## Problem
-
-
-1. Show the values in UI
-2. Update and Delete the particular values based on user wish.
-
 ## Kindly Refer the functionality
 
 1. Registration - FirstName,LastName,UserName (unique), Email (unique), Phone Number
 with country code,Password (standard regex validation to be added)
 
-## Test cases 1:
+## Signup:
 
-`Method`: `POST Url: http://localhost:6000/combination/createcombination`
-`
+`Method`: `POST Url: http://localhost:7000/user/signup`
+
 ## Input:
-`body:
-{
-    "color": [
-        "blue",
-        "yellow",
-        "green",
-        "red"
-    ],
-    "size": [
-        "small",
-        "medium",
-        "large"
-    ]
+`body: {
+    "first_name": "Sridhar",
+    "last_name": "D",
+    "user_name": "tamilam",
+    "email": "brocksritamil8q@gmail.com",
+    "country_code": "+91",
+    "phone_number": "6363426322",
+    "password": "yaMin34#4",
+    "isActivationLinkRequired": true
 }`
 
 ## Output:
@@ -57,495 +46,401 @@ with country code,Password (standard regex validation to be added)
     "message": "Success",
     "data": [
         {
-            "combination_id": 61,
-            "color": "blue",
-            "size": "small"
+            "user_id": 42,
+            "first_name": "Sridhar",
+            "last_name": "D",
+            "user_name": "tamilam",
+            "email": "brocksritamil8q@gmail.com",
+            "country_code": "+91",
+            "phone_number": "6369124322",
+            "password": "yaMin34#4",
+            "isActivationLinkRequired": true,
+            "status": "pending",
+            "created_at": "2022-09-18T13:58:14.576Z"
         },
-        {
-            "combination_id": 62,
-            "color": "blue",
-            "size": "medium"
-        },
-        {
-            "combination_id": 63,
-            "color": "blue",
-            "size": "large"
-        },
-        {
-            "combination_id": 64,
-            "color": "yellow",
-            "size": "small"
-        },
-        {
-            "combination_id": 65,
-            "color": "yellow",
-            "size": "medium"
-        },
-        {
-            "combination_id": 66,
-            "color": "yellow",
-            "size": "large"
-        },
-        {
-            "combination_id": 67,
-            "color": "green",
-            "size": "small"
-        },
-        {
-            "combination_id": 68,
-            "color": "green",
-            "size": "medium"
-        },
-        {
-            "combination_id": 69,
-            "color": "green",
-            "size": "large"
-        },
-        {
-            "combination_id": 70,
-            "color": "red",
-            "size": "small"
-        },
-        {
-            "combination_id": 71,
-            "color": "red",
-            "size": "medium"
-        },
-        {
-            "combination_id": 72,
-            "color": "red",
-            "size": "large"
-        }
+        true
     ]
 }`
 
-## Test cases 2:
+## Login 
 
-## input:
-`body:
-    {
-    "color": [
-        "blue",
-        "yellow",
-        "green",
-        "red"
-    ],
-    "size": [
-        "small",
-        "medium",
-        "large"
-    ],
-    "fit":[
-         "s",
-        "d",
-        "f",
-        "g"
-    ]
-}`
-## output:
-    `{
-    "status": true,
-    "code": 200,
-    "message": "Success",
-    "data": [
-        {
-            "combination_id": 73,
-            "color": "blue",
-            "size": "small",
-            "fit": "s"
-        },
-        {
-            "combination_id": 74,
-            "color": "blue",
-            "size": "small",
-            "fit": "d"
-        },
-        {
-            "combination_id": 75,
-            "color": "blue",
-            "size": "small",
-            "fit": "f"
-        },
-        {
-            "combination_id": 76,
-            "color": "blue",
-            "size": "small",
-            "fit": "g"
-        },
-        {
-            "combination_id": 77,
-            "color": "blue",
-            "size": "medium",
-            "fit": "s"
-        },
-        {
-            "combination_id": 78,
-            "color": "blue",
-            "size": "medium",
-            "fit": "d"
-        },
-        {
-            "combination_id": 79,
-            "color": "blue",
-            "size": "medium",
-            "fit": "f"
-        },
-        {
-            "combination_id": 80,
-            "color": "blue",
-            "size": "medium",
-            "fit": "g"
-        },
-        {
-            "combination_id": 81,
-            "color": "blue",
-            "size": "large",
-            "fit": "s"
-        },
-        {
-            "combination_id": 82,
-            "color": "blue",
-            "size": "large",
-            "fit": "d"
-        },
-        {
-            "combination_id": 83,
-            "color": "blue",
-            "size": "large",
-            "fit": "f"
-        },
-        {
-            "combination_id": 84,
-            "color": "blue",
-            "size": "large",
-            "fit": "g"
-        },
-        {
-            "combination_id": 85,
-            "color": "yellow",
-            "size": "small",
-            "fit": "s"
-        },
-        {
-            "combination_id": 86,
-            "color": "yellow",
-            "size": "small",
-            "fit": "d"
-        },
-        {
-            "combination_id": 87,
-            "color": "yellow",
-            "size": "small",
-            "fit": "f"
-        },
-        {
-            "combination_id": 88,
-            "color": "yellow",
-            "size": "small",
-            "fit": "g"
-        },
-        {
-            "combination_id": 89,
-            "color": "yellow",
-            "size": "medium",
-            "fit": "s"
-        },
-        {
-            "combination_id": 90,
-            "color": "yellow",
-            "size": "medium",
-            "fit": "d"
-        },
-        {
-            "combination_id": 91,
-            "color": "yellow",
-            "size": "medium",
-            "fit": "f"
-        },
-        {
-            "combination_id": 92,
-            "color": "yellow",
-            "size": "medium",
-            "fit": "g"
-        },
-        {
-            "combination_id": 93,
-            "color": "yellow",
-            "size": "large",
-            "fit": "s"
-        },
-        {
-            "combination_id": 94,
-            "color": "yellow",
-            "size": "large",
-            "fit": "d"
-        },
-        {
-            "combination_id": 95,
-            "color": "yellow",
-            "size": "large",
-            "fit": "f"
-        },
-        {
-            "combination_id": 96,
-            "color": "yellow",
-            "size": "large",
-            "fit": "g"
-        },
-        {
-            "combination_id": 97,
-            "color": "green",
-            "size": "small",
-            "fit": "s"
-        },
-        {
-            "combination_id": 98,
-            "color": "green",
-            "size": "small",
-            "fit": "d"
-        },
-        {
-            "combination_id": 99,
-            "color": "green",
-            "size": "small",
-            "fit": "f"
-        },
-        {
-            "combination_id": 100,
-            "color": "green",
-            "size": "small",
-            "fit": "g"
-        },
-        {
-            "combination_id": 101,
-            "color": "green",
-            "size": "medium",
-            "fit": "s"
-        },
-        {
-            "combination_id": 102,
-            "color": "green",
-            "size": "medium",
-            "fit": "d"
-        },
-        {
-            "combination_id": 103,
-            "color": "green",
-            "size": "medium",
-            "fit": "f"
-        },
-        {
-            "combination_id": 104,
-            "color": "green",
-            "size": "medium",
-            "fit": "g"
-        },
-        {
-            "combination_id": 105,
-            "color": "green",
-            "size": "large",
-            "fit": "s"
-        },
-        {
-            "combination_id": 106,
-            "color": "green",
-            "size": "large",
-            "fit": "d"
-        },
-        {
-            "combination_id": 107,
-            "color": "green",
-            "size": "large",
-            "fit": "f"
-        },
-        {
-            "combination_id": 108,
-            "color": "green",
-            "size": "large",
-            "fit": "g"
-        },
-        {
-            "combination_id": 109,
-            "color": "red",
-            "size": "small",
-            "fit": "s"
-        },
-        {
-            "combination_id": 110,
-            "color": "red",
-            "size": "small",
-            "fit": "d"
-        },
-        {
-            "combination_id": 111,
-            "color": "red",
-            "size": "small",
-            "fit": "f"
-        },
-        {
-            "combination_id": 112,
-            "color": "red",
-            "size": "small",
-            "fit": "g"
-        },
-        {
-            "combination_id": 113,
-            "color": "red",
-            "size": "medium",
-            "fit": "s"
-        },
-        {
-            "combination_id": 114,
-            "color": "red",
-            "size": "medium",
-            "fit": "d"
-        },
-        {
-            "combination_id": 115,
-            "color": "red",
-            "size": "medium",
-            "fit": "f"
-        },
-        {
-            "combination_id": 116,
-            "color": "red",
-            "size": "medium",
-            "fit": "g"
-        },
-        {
-            "combination_id": 117,
-            "color": "red",
-            "size": "large",
-            "fit": "s"
-        },
-        {
-            "combination_id": 118,
-            "color": "red",
-            "size": "large",
-            "fit": "d"
-        },
-        {
-            "combination_id": 119,
-            "color": "red",
-            "size": "large",
-            "fit": "f"
-        },
-        {
-            "combination_id": 120,
-            "color": "red",
-            "size": "large",
-            "fit": "g"
-        }
-    ]
-}`
+`Method`: `POST Url: http://localhost:7000/user/login`
 
-
-## Get all Combination
-
-`Method: GET Url: http://localhost:6000/combination/getall`
-    
 ## Input:
+`body: {
+    "first_name": "Sridhar",
+    "last_name": "D",
+    "user_name": "tamilam"
+    "email": "brocksritamil8q@gmail.com",
+    "country_code": "+91",
+    "phone_number": "6363426322",
+    "password": "yaMin34#4",
+    "isActivationLinkRequired": true
+}`
 
 ## Output:
-`{
-    "status": true,
-    "code": 200,
-    "message": "Success",
-    "data": [
-        {
-            "combination_id": 61,
-            "color": "blue",
-            "size": "small"
-        },
-        {
-            "combination_id": 62,
-            "color": "blue",
-            "size": "medium"
-        },
-        {
-            "combination_id": 63,
-            "color": "blue",
-            "size": "large"
-        },
-        {
-            "combination_id": 64,
-            "color": "yellow",
-            "size": "small"
-        },
-        {
-            "combination_id": 65,
-            "color": "yellow",
-            "size": "medium"
-        },
-        {
-            "combination_id": 66,
-            "color": "yellow",
-            "size": "large"
-        },
-        {
-            "combination_id": 67,
-            "color": "green",
-            "size": "small"
-        },
-        {
-            "combination_id": 68,
-            "color": "green",
-            "size": "medium"
-        },
-        {
-            "combination_id": 69,
-            "color": "green",
-            "size": "large"
-        },
-        {
-            "combination_id": 70,
-            "color": "red",
-            "size": "small"
-        },
-        {
-            "combination_id": 71,
-            "color": "red",
-            "size": "medium"
-        },
-        {
-            "combination_id": 72,
-            "color": "red",
-            "size": "large"
-        }
-    ]
-}`
-
-## GetById Combination Api
-
-`Method: GET Url:http://localhost:6000/combination/getone?combination_id=120`
-`query: combination_id: 120`
-## Input:
-
-## Output: 
 `{
     "status": true,
     "code": 200,
     "message": "Success",
     "data": {
-        "combination_id": 120,
-        "color": "red",
-        "size": "large",
-        "fit": "g"
+        "user_id": 39,
+        "first_name": "Sridhar",
+        "last_name": "D",
+        "email": "brocksri8@gmail.com",
+        "phone_number": "8508880793",
+        "user_name": "ravi7889",
+        "accessToken": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJyZWRpc0lkIjoiVXNlciNJZF8zOSIsImlhdCI6MTY2MzUxNDQ2MCwiZXhwIjoxNjYzNTE0NTIwfQ.TVu0V1CM1V1pMEzLLoyoAkuc62VF29m1sx4WTBh0FIUhgNtjf4FJ3aMVoAQKNM5fVxJooWzSz0k9q2igOP5pNw",
+        "refreshToken": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJyZWRpc0lkIjoiVXNlciNJZF8zOSIsImlhdCI6MTY2MzUxNDQ2MH0.LWauQj052V-k_vUfKlUmmF251FOB6Lj2JqPABS24K2j4OdCv9aVrX8KChmjMRfAtqEGA8qDY6L5IYTen-jwYlA",
+        "created_dt": "2022-09-18T15:21:04.710Z",
+        "key": "User#Id_39"
     }
 }`
 
-## Update Combination api
+## Get by user
 
-Updates an existing event. The JSON object must be passed in the request body as raw. It returns an error in case the event doesn't exist.
+`Method: GET Url: http://localhost:7000/user/getuser?user_id=39`
+`query: user_id: 39`
+    
+## Input:
 
-`Method: PUT Url: http://localhost:6000/combination/update?combination_id=72`
-`query: combination_id: 120`
+
+## Output:
+`{
+    "status": true,
+    "code": 200,
+    "message": "Success",
+    "data": {
+        "user_id": 18,
+        "first_name": "Sridhar",
+        "last_name": "D",
+        "user_name": "Sridhar527324",
+        "email": "brocksri@gmail.com",
+        "phone_number": "6369126322",
+        "country_code": "+91",
+        "EducationQualifications": [
+            {
+                "education_qualification_id": 1,
+                "user_id": 18,
+                "passed_out_year": 2021,
+                "institution": "Stc",
+                "degree": "B.Sc(informatin Technology)",
+                "percentage": "78.90"
+            },
+            {
+                "education_qualification_id": 2,
+                "user_id": 18,
+                "passed_out_year": 2023,
+                "institution": "Stc",
+                "degree": "M.Sc(informatin Technology)",
+                "percentage": "74.90"
+            },
+            {
+                "education_qualification_id": 3,
+                "user_id": 18,
+                "passed_out_year": 2021,
+                "institution": "Stc",
+                "degree": "B.Sc(informatin Technology)",
+                "percentage": "78.90"
+            },
+            {
+                "education_qualification_id": 4,
+                "user_id": 18,
+                "passed_out_year": 2023,
+                "institution": "Stc",
+                "degree": "M.Sc(informatin Technology)",
+                "percentage": "74.90"
+            },
+            {
+                "education_qualification_id": 5,
+                "user_id": 18,
+                "passed_out_year": 2021,
+                "institution": "Stc",
+                "degree": "B.Sc(informatin Technology)",
+                "percentage": "78.90"
+            },
+            {
+                "education_qualification_id": 6,
+                "user_id": 18,
+                "passed_out_year": 2023,
+                "institution": "Stc",
+                "degree": "M.Sc(informatin Technology)",
+                "percentage": "74.90"
+            }
+        ],
+        "WorkExperiences": [
+            {
+                "work_experience_id": 8,
+                "user_id": 18,
+                "company": "Inter Technology",
+                "start_date": "2021-10-01T00:11:00.000Z",
+                "end_date": "2022-10-01T08:11:00.000Z",
+                "resume_upload": null
+            },
+            {
+                "work_experience_id": 7,
+                "user_id": 18,
+                "company": "Adloggs Technology",
+                "start_date": "2021-10-01T00:11:00.000Z",
+                "end_date": "2022-10-01T08:11:00.000Z",
+                "resume_upload": null
+            },
+            {
+                "work_experience_id": 6,
+                "user_id": 18,
+                "company": "Inter Technology",
+                "start_date": "2021-10-01T00:11:00.000Z",
+                "end_date": "2022-10-01T08:11:00.000Z",
+                "resume_upload": null
+            },
+            {
+                "work_experience_id": 5,
+                "user_id": 18,
+                "company": "Adloggs Technology",
+                "start_date": "2021-10-01T00:11:00.000Z",
+                "end_date": "2022-10-01T08:11:00.000Z",
+                "resume_upload": null
+            },
+            {
+                "work_experience_id": 4,
+                "user_id": 18,
+                "company": "Inter Technology",
+                "start_date": "2021-10-01T00:11:00.000Z",
+                "end_date": "2022-10-01T08:11:00.000Z",
+                "resume_upload": null
+            },
+            {
+                "work_experience_id": 3,
+                "user_id": 18,
+                "company": "Adloggs Technology",
+                "start_date": "2021-10-01T00:11:00.000Z",
+                "end_date": "2022-10-01T08:11:00.000Z",
+                "resume_upload": null
+            },
+        ]
+    }
+}`
+
+## Get all user
+
+*** Profile Listing with pagination required, search (based on basic info), totalCount,
+filteredCount ***
 
 ## Input: 
-body:
+
+## Output
+
 `{
-    "color": "orange",
-    "size": "medium"
+    "status": true,
+    "code": 200,
+    "message": "Success",
+    "data": [
+        {
+            "user_id": 1,
+            "first_name": "sridhar",
+            "last_name": "D",
+            "user_name": "sridhar",
+            "email": "brocksri8122@gmail.com",
+            "phone_number": "6369122322",
+            "country_code": "+91",
+            "EducationQualifications": [],
+            "WorkExperiences": []
+        },
+        {
+            "user_id": 2,
+            "first_name": "sridhar",
+            "last_name": "D",
+            "user_name": "sridhar1",
+            "email": "brocksri81@gmail.com",
+            "phone_number": "6369122322",
+            "country_code": "+91",
+            "EducationQualifications": [],
+            "WorkExperiences": []
+        },
+        {
+            "user_id": 13,
+            "first_name": "Sridhar",
+            "last_name": "D",
+            "user_name": "Sridhar52324",
+            "email": "brocksri28@gmail.com",
+            "phone_number": "6369126322",
+            "country_code": "+91",
+            "EducationQualifications": [],
+            "WorkExperiences": []
+        },
+        {
+            "user_id": 18,
+            "first_name": "Mohan",
+            "last_name": "S",
+            "user_name": "Sridhar527324",
+            "email": "brosssscksri@gmail.com",
+            "phone_number": "9740934566",
+            "country_code": "+91",
+            "EducationQualifications": [
+                {
+                    "education_qualification_id": 10,
+                    "user_id": 18,
+                    "passed_out_year": 2023,
+                    "institution": "Stc",
+                    "degree": "M.Sc(informatin Technology)",
+                    "percentage": "74.90"
+                },
+                {
+                    "education_qualification_id": 9,
+                    "user_id": 18,
+                    "passed_out_year": 2021,
+                    "institution": "Stc",
+                    "degree": "B.Sc(informatin Technology)",
+                    "percentage": "78.90"
+                },
+                {
+                    "education_qualification_id": 8,
+                    "user_id": 18,
+                    "passed_out_year": 2023,
+                    "institution": "Stc",
+                    "degree": "M.Sc(informatin Technology)",
+                    "percentage": "74.90"
+                },
+                {
+                    "education_qualification_id": 7,
+                    "user_id": 18,
+                    "passed_out_year": 2021,
+                    "institution": "Stc",
+                    "degree": "B.Sc(informatin Technology)",
+                    "percentage": "78.90"
+                },
+                {
+                    "education_qualification_id": 6,
+                    "user_id": 18,
+                    "passed_out_year": 2023,
+                    "institution": "Stc",
+                    "degree": "M.Sc(informatin Technology)",
+                    "percentage": "74.90"
+                },
+                {
+                    "education_qualification_id": 5,
+                    "user_id": 18,
+                    "passed_out_year": 2021,
+                    "institution": "Stc",
+                    "degree": "B.Sc(informatin Technology)",
+                    "percentage": "78.90"
+                },
+            ],
+            "WorkExperiences": [
+                {
+                    "work_experience_id": 12,
+                    "user_id": 18,
+                    "company": "Inter Technology",
+                    "start_date": "2021-10-01T00:11:00.000Z",
+                    "end_date": "2022-10-01T08:11:00.000Z",
+                    "resume_upload": null
+                },
+                {
+                    "work_experience_id": 11,
+                    "user_id": 18,
+                    "company": "Adloggs Technology",
+                    "start_date": "2021-10-01T00:11:00.000Z",
+                    "end_date": "2022-10-01T08:11:00.000Z",
+                    "resume_upload": null
+                },
+                {
+                    "work_experience_id": 10,
+                    "user_id": 18,
+                    "company": "Inter Technology",
+                    "start_date": "2021-10-01T00:11:00.000Z",
+                    "end_date": "2022-10-01T08:11:00.000Z",
+                    "resume_upload": null
+                },
+            ]
+        },
+        {
+            "user_id": 21,
+            "first_name": "Sridhar",
+            "last_name": "D",
+            "user_name": "Sridhar5247324",
+            "email": "brockssri@gmail.com",
+            "phone_number": "6369126322",
+            "country_code": "+91",
+            "EducationQualifications": [],
+            "WorkExperiences": []
+        },
+        {
+            "user_id": 22,
+            "first_name": "Sridhar",
+            "last_name": "D",
+            "user_name": "Sridhar52437324",
+            "email": "brocsaawkssri@gmail.com",
+            "phone_number": "6369126322",
+            "country_code": "+91",
+            "EducationQualifications": [],
+            "WorkExperiences": []
+        },
+        {
+            "user_id": 26,
+            "first_name": "Sridhar",
+            "last_name": "D",
+            "user_name": "ravi788944",
+            "email": "brock45sri@gmail.com",
+            "phone_number": "6369126322",
+            "country_code": "+91",
+            "EducationQualifications": [],
+            "WorkExperiences": []
+        },
+    ],
+    "pagination": {
+        "totalRows": 20,
+        "rowSize": 8,
+        "currentPage": 1,
+        "currentPageFirstSlNo": 1,
+        "currentPageLastSlNo": 8
+    }
+}`
+
+
+## Update Profile Builder
+
+*** Write CRUD APIs for building User Profile Builder ***
+
+## CRUD APIs for building User Profile Builder
+
+`Method: PUT Url: http://localhost:7000/user/updateuser`
+`query: user_id: 39`
+
+## Input: 
+`body:
+{
+    "user_id": 39,
+    "first_name": "Sridhar",
+    "last_name": "D",
+    "phone_number": "8508880793",
+    "current_address": "Coimbatore",
+    "native_address": "chennai",
+    "education_qualification": [
+        {
+            "passed_out_year": "2021",
+            "institution": "Stc",
+            "degree": "B.Sc(informatin Technology)",
+            "percentage": 78.90
+        },
+        {
+            "passed_out_year": "2023",
+            "institution": "Stc",
+            "degree": "M.Sc(informatin Technology)",
+            "percentage": 74.90
+        }
+    ],
+    "work_experience": [
+        {
+            "company": "Adloggs Technology",
+            "start_date": "2021-10-01 05:41:00",
+            "end_date": "2022-10-01 13:41:00"
+        },
+        {
+            "company": "Inter Technology",
+            "start_date": "2021-10-01 05:41:00",
+            "end_date": "2022-10-01 13:41:00"
+        }
+    ]
 }`
 
 ## Output:
@@ -553,16 +448,12 @@ body:
     "status": true,
     "code": 200,
     "message": "Success",
-    "data": [
-        1
-    ]
+    "data": "Data updated"
 }`
 
-## Delete Combination Api
+## Verify User
 
-`Method: DELTE Url: http://localhost:6000/combination/delete?combination_id=62`
-`query: combination_id: 62`
-
+`Method: get Url: http://localhost:7000/user/confirm?code=U2FsdGVkX1%2BcNG5RUxQjqpJX2op%2B%2FK3yhqom49qJjnTiIpn9YPnJH%2BJm9vd99sEDiC98fSxm9MuKl4DEfA5Nmr9MpZihRbQ1pR2KlHQCc1gcJSyZEIDfKywkI83XAqd0`
 
 ## Input: 
 
@@ -572,6 +463,16 @@ body:
     "code": 200,
     "message": "Success",
     "data": {
-        "message": "Data deleted"
+        "message": "Accepted"
+    }
+}`
+
+## Output:
+`{
+    "status": true,
+    "code": 200,
+    "message": "Success",
+    "data": {
+        "message": "Already accepted the mail"
     }
 }`

@@ -56,13 +56,27 @@ export class LoginService {
         async.waterfall([
             function (waterfallCallback: Function) {
                 var requiredStringForJwtToken = "User#Id_" + userDtl.user_id;
-                jwtUtils.jwtSign({ redisId: requiredStringForJwtToken }, function (err: any, token: any) {
-                    if (err) return waterfallCallback(new Error(constant.loginErr), null);
-                    return waterfallCallback(null, token, requiredStringForJwtToken)
+                async.parallel({
+                    accessToken: function (parallelCallback: Function) {
+                        jwtUtils.jwtSignSetWithExpireTime({ redisId: requiredStringForJwtToken }, function (err: any, token) {
+                            if (err) return waterfallCallback(new Error(constant.loginErr), null);
+                            return parallelCallback(null, token)
+                        })
+                    },
+                    refreshToken: function (parallelCallback: Function) {
+                        jwtUtils.jwtSign({ redisId: requiredStringForJwtToken }, function (err: any, token: any) {
+                            if (err) return waterfallCallback(new Error(constant.loginErr), null);
+                            return parallelCallback(null, token)
+                        })
+                    }
+                }, function (err, response) {
+                    waterfallCallback(err, response, requiredStringForJwtToken)
                 })
             },
-            function (token: any, requiredStringForJwtToken: any, waterfallCallback: Function) {
-                payload.token = token
+            function (jwtToken: any, requiredStringForJwtToken: any, waterfallCallback: Function) {
+
+                payload.accessToken = jwtToken.accessToken;
+                payload.refreshToken = jwtToken.refreshToken;
                 payload.created_dt = new Date();
                 payload.key = requiredStringForJwtToken
 
@@ -74,7 +88,7 @@ export class LoginService {
                 var reqFinalJson: any = {
                     payload: payload,
                 }
-                commonService.update(data, { where: { user_id: userDtl.user_id } }, models.User, function (err, payload) {
+                commonService.update(data, { where: { user_id: userDtl.user_id } }, models.User, function (err: Error, payload: any) {
                     waterfallCallback(err, reqFinalJson)
                 })
             }
@@ -82,6 +96,7 @@ export class LoginService {
             callback(err, result)
         })
     }
+
 }
 
 export const loginService = new LoginService()

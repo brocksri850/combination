@@ -24,6 +24,21 @@ class RouterResponse {
                 message: "Success",
                 data: result
             }
+            if (result && result.rows) {
+                response.data = result.rows;
+                response.pagination = {
+                    totalCount: result.count ? result.count : 0,
+                    limit: constant.Offset
+                };
+                response.pagination.currentPage = Number(query.page) ? parseInt(query.page) : 1;
+                response.pagination.currentPageFirstSlNo = ((Number(response.pagination.currentPage) - 1) * constant.Offset) + 1;
+                response.pagination.currentPageLastSlNo = (response.pagination.currentPageFirstSlNo + result.rows.length) - 1;
+
+                if (result.other) response.other = result.other
+            } else {
+                response.data = result
+                delete response.data.msg;
+            };
 
         } else {
             response = {

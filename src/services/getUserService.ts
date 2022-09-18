@@ -3,6 +3,7 @@ import commonService from "./commonService";
 import * as _ from "lodash";
 import { routerResponse } from "../common/responseQuery";
 const { Op } = require("sequelize");
+import * as async from "async";
 
 class GetUserService {
 
@@ -63,11 +64,22 @@ class GetUserService {
             }
         }
 
-        commonService.findAll(condition, models.User, function (err: Error, response: any) {
-            callback(err, response)
+        async.parallel({
+            count: function (parallelCallback: Function) {
+                let countCondition: any = { where: condition.where };
+                commonService.count(countCondition, models.User, function (err: Error, response: any) {
+                    parallelCallback(err, response);
+                });
+            },
+            rows: function (parallelCallback: Function) {
+                commonService.findAll(condition, models.User, function (err: Error, response: any) {
+                    parallelCallback(err, response);
+                });
+            }
+        }, function (err, result) {
+            callback(err, result)
         })
     }
-
 }
 
 var getUserService = new GetUserService();

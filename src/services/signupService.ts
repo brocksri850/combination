@@ -5,6 +5,7 @@ import * as async from "async";
 import * as crypto from "crypto";
 import { models } from "../models/model";
 import { cryptoCommon } from "../../utils/commonUtil";
+import { routerResponse } from "../common/responseQuery";
 
 export interface EntityAttributes { }
 
@@ -15,6 +16,15 @@ export class SignupService {
 
         async.waterfall([
             function (waterfallCallback: Function) {
+                var isValidPassword = routerResponse.checkPassword(data.password)
+                if (isValidPassword == false) {
+                    return callback(null, constant.InValidPassword)
+                } else {
+                    waterfallCallback(null, null)
+                }
+            },
+            function (dummy: any, waterfallCallback: Function) {
+
                 commonService.findOne({ where: { email: data.email, user_name: data.user_name } }, models.User, function (err: any, response: any) {
                     if (err) return waterfallCallback(err, null);
                     if (response) {
@@ -30,9 +40,12 @@ export class SignupService {
 
                 data.salt = crypto.randomBytes(16).toString('hex');
                 data.password_string = crypto.pbkdf2Sync(data.password, data.salt, 1000, 64, `sha512`).toString(`hex`);
-
-                data.confirmation_code = cryptoCommon.encrypt(JSON.stringify({ email: data.email, user_name: data.user_name }));
-                data.status = "pending";
+                if (data.isActivationLinkRequired == true) {
+                    data.confirmation_code = cryptoCommon.encrypt(JSON.stringify({ email: data.email, user_name: data.user_name }));
+                    data.status = constant.Status.Pending;
+                } else {
+                    data.status = constant.Status.Accept
+                }
 
                 data.created_at = new Date().toISOString();
 

@@ -27,6 +27,7 @@ export class Constants {
 
     Offset = 8;
 
+    InValidPassword = "Please enter a password at least 8 character and contain At least one uppercase.At least one lower case.At least one special character."
 }
 
 export const constants = new Constants();

@@ -21,14 +21,14 @@ To start the server run:
 
 ## Problem
 
-Generating Array of combination values based on number of array values and that values store it database, and also below tasks are completed.
 
 1. Show the values in UI
 2. Update and Delete the particular values based on user wish.
 
 ## Kindly Refer the functionality
 
-## create combination
+1. Registration - FirstName,LastName,UserName (unique), Email (unique), Phone Number
+with country code,Password (standard regex validation to be added)
 
 ## Test cases 1:
 

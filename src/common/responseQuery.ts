@@ -6,7 +6,9 @@ class RouterResponse {
     public res: any
 
     objResponse(err, result: any, req: any, res: any) {
+
         var response = {} as any;
+        let query: any = req.query;
 
         if (_.isError(err) || !_.isEmpty(err)) {
             response = {
@@ -22,6 +24,7 @@ class RouterResponse {
                 message: "Success",
                 data: result
             }
+
         } else {
             response = {
                 status: true,
@@ -32,11 +35,13 @@ class RouterResponse {
         }
 
         return response
-
     }
 
-    public getPagenationQuery(query: any, pageNumber: any) {
-        if (!pageNumber || pageNumber == 0) {
+    public getPagenationQuery(query) {
+
+        var pageNumber = query.pageNumber || 0;
+
+        if (pageNumber == 0) {
             query.offset = 0;
             query.limit = constant.Offset
             return query;
@@ -46,6 +51,11 @@ class RouterResponse {
         return query;
     }
 
+
+    public checkPassword(password) {
+        var re = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+        return re.test(password)
+    }
 }
 
 export const routerResponse = new RouterResponse();

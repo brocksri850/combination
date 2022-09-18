@@ -33,6 +33,12 @@ export default function (sequelize: Sequelize): UserModelStatic {
         country_code: {
             type: DataTypes.STRING,
         },
+        current_address: {
+            type: DataTypes.STRING,
+        },
+        native_address: {
+            type: DataTypes.STRING,
+        },
         password: {
             type: DataTypes.STRING,
         },
@@ -59,6 +65,9 @@ export default function (sequelize: Sequelize): UserModelStatic {
         },
         confirmation_code: {
             type: DataTypes.STRING,
+        },
+        isActivationLinkRequired: {
+            type: DataTypes.BOOLEAN
         }
 
     }, {

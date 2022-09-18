@@ -1,14 +1,20 @@
 import { Router } from "express";
 import { routerResponse } from "../common/responseQuery";
-import userService from "../services/userService";
+import getUserService from "../services/getUserService";
+import loginService from "../services/loginService";
+import signupService from "../services/signupService";
+import userProfileService from "../services/userProfileBuilderService";
 
 export class UserRouter {
     public router;
+
     constructor() {
         this.router = Router();
         this.init()
+
     }
     init() {
+
         this.router.post("/signup", this.signupWithUser);
         this.router.post("/login", this.login);
         this.router.get("/getuser", this.getByUser);
@@ -19,7 +25,7 @@ export class UserRouter {
 
     public signupWithUser(req: any, res: any) {
         try {
-            userService.signupWithUser(req, function (err: Error, response) {
+            signupService.signupWithUser(req, function (err: Error, response) {
                 var commonResponse = routerResponse.objResponse(err, response, req, res);
                 res.send(commonResponse);
             });
@@ -31,7 +37,7 @@ export class UserRouter {
 
     public login(req: any, res: any) {
         try {
-            userService.login(req, function (err: Error, response) {
+            loginService.login(req, function (err: Error, response) {
                 var commonResponse = routerResponse.objResponse(err, response, req, res);
                 res.send(commonResponse);
             });
@@ -43,7 +49,7 @@ export class UserRouter {
 
     public getByUser(req: any, res: any) {
         try {
-            userService.getByUser(req, function (err: Error, response) {
+            getUserService.getByUser(req, function (err: Error, response) {
                 var commonResponse = routerResponse.objResponse(err, response, req, res);
                 res.send(commonResponse);
             });
@@ -55,7 +61,7 @@ export class UserRouter {
 
     public userProfileBuilder(req: any, res: any) {
         try {
-            userService.userProfileBuilder(req, function (err: Error, response) {
+            userProfileService.userProfileBuilder(req, function (err: Error, response) {
                 var commonResponse = routerResponse.objResponse(err, response, req, res);
                 res.send(commonResponse);
             });
@@ -67,7 +73,7 @@ export class UserRouter {
 
     public getAllUsers(req: any, res: any) {
         try {
-            userService.getAllUsers(req, function (err: Error, response) {
+            getUserService.getAllUsers(req, function (err: Error, response) {
                 var commonResponse = routerResponse.objResponse(err, response, req, res);
                 res.send(commonResponse);
             });
@@ -79,7 +85,7 @@ export class UserRouter {
 
     public verifyUser(req: any, res: any) {
         try {
-            userService.verifyUser(req, function (err: Error, response) {
+            signupService.verifyUser(req, function (err: Error, response) {
                 var commonResponse = routerResponse.objResponse(err, response, req, res);
                 res.send(commonResponse);
             });

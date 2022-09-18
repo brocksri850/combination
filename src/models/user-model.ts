@@ -36,9 +36,6 @@ export default function (sequelize: Sequelize): UserModelStatic {
         password: {
             type: DataTypes.STRING,
         },
-        hash: {
-            type: DataTypes.STRING
-        },
         salt: {
             type: DataTypes.STRING
         },

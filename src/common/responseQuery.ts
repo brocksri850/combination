@@ -1,4 +1,5 @@
 import * as _ from "lodash";
+import constant from "./constant";
 
 class RouterResponse {
 
@@ -29,9 +30,20 @@ class RouterResponse {
                 data: result
             }
         }
-        
+
         return response
 
+    }
+
+    public getPagenationQuery(query: any, pageNumber: any) {
+        if (!pageNumber || pageNumber == 0) {
+            query.offset = 0;
+            query.limit = constant.Offset
+            return query;
+        }
+        query.offset = (pageNumber * constant.Offset) - constant.Offset;
+        query.limit = constant.Offset
+        return query;
     }
 
 }

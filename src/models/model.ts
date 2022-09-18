@@ -77,8 +77,9 @@ export class Database {
   }
 
   initAssociations(models: SequelizeModels) {
-    //userCredential and userDtl
 
+    models.User.hasMany(models.EducationQualification, { foreignKey: "user_id", sourceKey: "user_id" });
+    models.User.hasMany(models.WorkExperience, { foreignKey: "user_id", sourceKey: "user_id" });
   }
 
   getSequelize() {

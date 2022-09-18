@@ -53,7 +53,6 @@ export default function (sequelize: Sequelize): UserModelStatic {
         },
         status: {
             type: DataTypes.STRING,
-            defaultValue: 'Active',
         },
         created_at: {
             type: DataTypes.DATE,
@@ -61,6 +60,9 @@ export default function (sequelize: Sequelize): UserModelStatic {
         updated_at: {
             type: DataTypes.DATE,
         },
+        confirmation_code: {
+            type: DataTypes.STRING,
+        }
 
     }, {
         indexes: [],

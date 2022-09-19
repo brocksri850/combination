@@ -41,7 +41,7 @@ class CombinationService {
         })
     }
 
-    public deleteCombinationId(req: any, callback) {
+    public deleteCombinationId(req: any, callback: Function) {
         var query = req.query;
         var condition: any = {
             where: {

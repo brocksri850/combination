@@ -9,18 +9,13 @@ import { logger } from "../common/logger";
 
 //models
 
-import user, { UserModelStatic } from "./user-model";
-import educationqualification, { EducationModelStatic } from "./educationQualification-model";
-import workexperience, { WorkExperienceModelStatic } from "./workExperience-model";
-
+import combination, { CombinationModelStatic } from "./combination-model";
 
 
 export interface SequelizeModels {
   sequelize: Sequelize;
 
-  User: UserModelStatic;
-  EducationQualification: EducationModelStatic;
-  WorkExperience: WorkExperienceModelStatic;
+  Combination: CombinationModelStatic;
 }
 
 export class Database {
@@ -49,10 +44,8 @@ export class Database {
 
     this._models = {
       sequelize,
-      User: user(this._sequelize),
-      EducationQualification: educationqualification(this._sequelize),
-      WorkExperience: workexperience(this._sequelize)
-
+      Combination: combination(this._sequelize),
+      
     };
 
     var model: any;
@@ -77,9 +70,8 @@ export class Database {
   }
 
   initAssociations(models: SequelizeModels) {
+    //userCredential and userDtl
 
-    models.User.hasMany(models.EducationQualification, { foreignKey: "user_id", sourceKey: "user_id" });
-    models.User.hasMany(models.WorkExperience, { foreignKey: "user_id", sourceKey: "user_id" });
   }
 
   getSequelize() {

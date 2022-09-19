@@ -9,7 +9,7 @@ import * as fileUpload from 'express-fileupload';
 import * as errorHandler from 'errorhandler';
 import * as methodOverride from 'method-override';
 
-import userRoutes from './routes/userRoutes';
+import combinationRoutes from './routes/combinationRoutes';
 
 
 export class Server {
@@ -64,7 +64,7 @@ export class Server {
 
     //All Routes
 
-    this.app.use('/user', userRoutes);
+    this.app.use('/combination', combinationRoutes)
 
 
     // Start Point

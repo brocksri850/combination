@@ -5,7 +5,7 @@ var http = require("http");
 var https = require("https");
 var fs = require("fs");
 //create http server
-var serverPort = normalizePort(process.env.PORT || 7000);
+var serverPort = normalizePort(process.env.PORT || 6000);
 var app = server.Server.bootstrap().app;
 app.set("port", serverPort);
 if (app.get('env') === "production") {

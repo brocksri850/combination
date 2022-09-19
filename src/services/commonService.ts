@@ -21,7 +21,7 @@ export class CommonService {
             callback(error, null);
         });
     }
-
+    
     bulkCreate(entityAttributes: EntityAttributes, accessObject: any, callback: Function) {
         accessObject.bulkCreate(entityAttributes).then((entity: any) => {
             callback(null, entity);
@@ -49,7 +49,7 @@ export class CommonService {
             callback(error, null);
         });
     }
-
+    
     destroy(condition: EntityAttributes, accessObject: any, callback: Function) {
         accessObject.destroy(condition).then((entity: any) => {
             callback(null, entity);
@@ -59,42 +59,16 @@ export class CommonService {
         });
     }
 
-    findOrCreate(condition, entityAttributes: EntityAttributes, accessObject: any, callback: Function) {
-        accessObject.findOrCreate({ where: condition, defaults: entityAttributes }).then((entity: any) => {
-            callback(null, entity);
-        }).catch((error: Error) => {
-            logger.error(error.message);
-            callback(error, null);
-        });
-    }
-
-    multiUpdateOrCreate(entityAttributes: EntityAttributes, updateFields: any, accessObject: any, callback: Function) {
-        accessObject.bulkCreate(entityAttributes, { updateOnDuplicate: updateFields }).then((entity: any) => {
-            callback(null, entity);
-        }).catch((error: Error) => {
-            logger.error(error.message);
-            callback(error, null);
-        });
-    }
-
-    findAndCountAll(condition: any, accessObject: any, callback: Function) {
-        accessObject.findAndCountAll(condition).then((entity: any) => {
-            return callback(null, entity);
-        }).catch((error: Error) => {
-            logger.error(error.message);
-            return callback(error, null);
-        });
-    }
-
-    count(condition: any, accessObject: any, callback: Function) {
-        accessObject.count(condition).then((entity: any) => {
-            callback(null, entity);
-        }).catch((error: Error) => {
-            logger.error(error.message);
-            callback(error, null);
-        });
-    }
-
+    // generateKeyValues(data: any) {
+    //     let keyValus = {}
+    //     let dataType = {
+    //         type: DataTypes.STRING,
+    //         allowNull: false
+    //     }
+    //     Object.keys(data).forEach(key => {
+    //         keyValus[key] = dataType
+    //     })
+    // }
 
 }
 
